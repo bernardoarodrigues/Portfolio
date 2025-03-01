@@ -109,7 +109,7 @@ const Project: React.FC<ProjectProps> = ({project}) => {
                 {project.technologies.map((tech, index) => (
                   <Button key={index} variant='outline' className='flex flex-row justify-between items-center py-6 px-3 cursor-pointer' onClick={() => window.open(techUrls[tech])}>
                     <div className='flex flex-row gap-2 items-center'>
-                      <img src={'/src/assets/' + (project.name=='Power Source' ? 'cube' : tech.toLowerCase()) + '.svg'} className='w-4 h-4 rounded-sm'/>
+                      <img src={'/static/images/' + (project.name=='Power Source' ? 'cube' : tech.toLowerCase()) + '.svg'} className='w-4 h-4 rounded-sm'/>
                       <p className='font-semibold'>{tech}</p>
                     </div>
                     <ExternalLink className="h-4 w-4" />                  

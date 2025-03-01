@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ThemeProvider } from "./components/custom/theme-provider.js"
-import photo from './assets/photo.jpg' 
+import photo from '/static/images/photo.jpg' 
 import './App.css'
 import { Card } from './components/ui/card.js'
 import { Button } from './components/ui/button.js'
