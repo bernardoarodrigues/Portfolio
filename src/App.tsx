@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import { ThemeProvider } from "./components/custom/theme-provider"
+import { ThemeProvider } from "./components/custom/theme-provider.js"
 import photo from './assets/photo.jpg' 
 import './App.css'
-import { Card } from './components/ui/card'
-import { Button } from './components/ui/button'
-import { ModeToggle } from './components/custom/mode-toggle'
-import { GitIcon, LinkedinIcon } from './components/custom/icons'
+import { Card } from './components/ui/card.js'
+import { Button } from './components/ui/button.js'
+import { ModeToggle } from './components/custom/mode-toggle.js'
+import { GitIcon, LinkedinIcon } from './components/custom/icons.js'
 import { ChevronLeft, ChevronRight, FileText, Laptop, Mail } from 'lucide-react'
-import Project from './components/custom/project'
 import { motion } from "motion/react"
-import { projects } from './data.js'
-import NavList from './components/custom/navlist.js'
+import { Projects, projects } from './data.js'
+import NavList from './components/custom/navlist'
+import Project from './components/custom/project'
 
 function App() {
   const links = {
@@ -20,9 +20,9 @@ function App() {
     'resume': 'https://firebasestorage.googleapis.com/v0/b/bernardo-portfolio.firebasestorage.app/o/Resume.pdf?alt=media&token=d4a0a503-2969-4b43-9acb-eac9a252c868'
   }
 
-  const [currentCategory, setCurrentCategory] = useState(0)
-  const [currentProject, setCurrentProject] = useState(0)
-  const [filteredProjects, setFilteredProjects] = useState(projects)
+  const [currentCategory, setCurrentCategory] = useState<number>(0);
+  const [currentProject, setCurrentProject] = useState<number>(0);
+  const [filteredProjects, setFilteredProjects] = useState<Projects>(projects);
 
   function preloadImages() {
     projects.forEach(project => {
@@ -36,7 +36,7 @@ function App() {
         const link = document.createElement('link');
         link.rel = 'preload';
         link.as = 'image';
-        link.href = item.type === 'video' ? item.thumb : item.url;
+        link.href = item.thumb ? item.thumb : item.url;
         document.head.appendChild(link);
       })
     })

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from "motion/react"
-import { Card } from '../ui/card'
+import { Card } from '../ui/card.js'
 import { projects } from '../../data.js'
 import { Button } from '../ui/button.js'
 import {
@@ -10,14 +10,34 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { ChevronLeft, ChevronRight, Filter, ListFilter } from 'lucide-react'
+} from "../ui/dropdown-menu"
+import { ChevronLeft, ChevronRight, ListFilter } from 'lucide-react'
 
 const categories = ['All', 'Web', 'Mobile', 'AI', 'Electronics']
 
-export default function NavList({currentCategory, setCurrentCategory, currentProject, setCurrentProject, filteredProjects, setFilteredProjects}) {
-  const scrollContainerRef = React.useRef(null)
-  const [canScroll, setCanScroll] = React.useState(false)
+interface NavListProps {
+  currentCategory: number;
+  setCurrentCategory: React.Dispatch<React.SetStateAction<number>>;
+  currentProject: number;
+  setCurrentProject: React.Dispatch<React.SetStateAction<number>>;
+  filteredProjects: Array<{
+    logo: string;
+    name: string;
+    categories: string[];
+  }>;
+  setFilteredProjects: React.Dispatch<React.SetStateAction<typeof projects>>;
+}
+
+const NavList: React.FC<NavListProps> = ({
+  currentCategory,
+  setCurrentCategory,
+  currentProject,
+  setCurrentProject,
+  filteredProjects,
+  setFilteredProjects
+}) => {
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+  const [canScroll, setCanScroll] = React.useState<boolean>(false);
 
   const checkScroll = () => {
     if (scrollContainerRef.current) {
@@ -33,7 +53,7 @@ export default function NavList({currentCategory, setCurrentCategory, currentPro
     return () => window.removeEventListener('resize', checkScroll)
   }, [filteredProjects])
 
-  const scroll = (direction) => {
+  const scroll = (direction: string) => {
     if (scrollContainerRef.current) {
       const scrollAmount = 200
       scrollContainerRef.current.scrollBy({
@@ -114,3 +134,5 @@ export default function NavList({currentCategory, setCurrentCategory, currentPro
     </motion.div>
   )
 }
+
+export default NavList

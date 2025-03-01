@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
-import { Button } from '../ui/button'
-import { Download, ExternalLink, Images, Play, SquareArrowOutUpRight } from 'lucide-react'
+import { Button } from '../ui/button.js'
+import { ExternalLink, Play } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
-} from "@/components/ui/dialog"
-import { Card } from '../ui/card'
+} from "../ui/dialog"
+import { Card } from '../ui/card.js'
 import { motion } from "motion/react"
-import { techUrls } from '../../data.js'
+import { ProjectType, techUrls } from '../../data.js'
 
-const Project = ({project}) => {
-  const [open, setOpen] = useState(false);
-  const [dialogImg, setDialogImg] = useState('');
+interface ProjectProps {
+  project: ProjectType;
+}
+
+const Project: React.FC<ProjectProps> = ({project}) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const [dialogImg, setDialogImg] = useState<string>('');
 
   return (
     <motion.div

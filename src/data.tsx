@@ -1,4 +1,34 @@
-export const projects = [
+export interface GalleryItem {
+  type: 'image' | 'video';
+  width: string;
+  url: string;
+  thumb?: string;
+}
+
+export interface ProjectStat {
+  0: string; // value
+  1: string; // description
+}
+
+export interface ProjectType {
+  id: number;
+  name: string;
+  description: string;
+  type: string;
+  categories: string[];
+  url: string;
+  logo: string;
+  galleryCols: number[][];
+  galleryBg: string;
+  gallery: GalleryItem[];
+  about: string;
+  stats: ProjectStat[];
+  technologies: string[];
+}
+
+export type Projects = ProjectType[];
+
+export const projects: Projects = [
   {
     id: 0,
     name: 'FormsGPT',
@@ -269,7 +299,7 @@ Regarding the video, the device hosts a local web server that shares a video str
   },
 ]
 
-export const techUrls = {
+export const techUrls: { [key: string]: string } = {
   'React': 'https://reactnative.dev',
   'React Native': 'https://react.dev',
   'Firebase': 'https://firebase.google.com',
